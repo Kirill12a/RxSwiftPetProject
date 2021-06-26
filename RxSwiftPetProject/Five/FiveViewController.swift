@@ -6,24 +6,33 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FiveViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    
+    @IBOutlet weak var imageSpaceX: UIImageView!
+    @IBOutlet weak var viewSpace: UIView!
+    @IBOutlet weak var labelText: UILabel!
+    @IBOutlet weak var oneTouchOutlet: UIButton!
+    @IBOutlet weak var twoTouchOutlet: UIButton!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        oneTouchOutlet.rx
+            .tap
+            .subscribe {[weak self] (elements) in
+                FuncTest.rxValue(label: self!.labelText, view: self!.viewSpace)
+            }
+        twoTouchOutlet.rx
+            .tap
+            .subscribe {[weak self] (elements) in
+                FuncTest.rxValue(label: self!.labelText, view: self!.viewSpace)
+                
+            }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    
 }

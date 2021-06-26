@@ -6,24 +6,26 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FourViewController: UIViewController {
-
+    
+    @IBOutlet weak var elements: UILabel!
+    @IBOutlet weak var tapScreen: UIButton!
+    var countElement = 0
+    var bag = DisposeBag()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        elements.text = "\(countElement)"
+        
+        tapScreen.rx
+            .tap
+            .subscribe { [weak self] _ in
+                self!.countElement += 1
+                self!.elements.text = "\(self!.countElement )"
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
