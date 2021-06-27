@@ -22,6 +22,9 @@ class OneViewController: UIViewController {
     @IBOutlet weak var buttonOutlet: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
         loginField.becomeFirstResponder()
         
         loginField.rx.text.map{$0 ?? ""}.bind(to: loginViewModel.loginUserPublishSubject).disposed(by: disposeBag)
